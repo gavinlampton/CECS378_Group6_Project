@@ -7,43 +7,43 @@ For your semester project, your group is to perform an attack or show a way in w
 
 Assignment (40 points total) 
 
-Create / Develop something very UNIQUE to your project (e.g. Network packet, email spoofing, authentication back-end webserver, social engineering, etc.) 
+1) Create / Develop something very UNIQUE to your project (e.g. Network packet, email spoofing, authentication back-end webserver, social engineering, etc.) 
 
-Write a report, with a minimum of 10 pages (Excludingcover page, appendices/index page, works cited page) explaining what worked? What didn’t work? In the most detail as possible. 
+2) Write a report, with a minimum of 10 pages (Excludingcover page, appendices/index page, works cited page) explaining what worked? What didn’t work? In the most detail as possible. 
 
 Excuses such as: 
 
-We didn’t have time, won’t be accepted 
+a) We didn’t have time, won’t be accepted 
 
-We didn’t know where to start 
+b) We didn’t know where to start 
 
-We didn’t know we had to do this or that 
+c) We didn’t know we had to do this or that 
 
  
 
-The report should include a page with enough details as to what everyone did or didn’t do. 
+3) The report should include a page with enough details as to what everyone did or didn’t do. 
 
-John Smith 
+a) John Smith 
 
-Assumed the Role of project manager. Created deliverables and a tracking schedule. 
+   Assumed the Role of project manager. Created deliverables and a tracking schedule. 
 
-Coordinated program schedule, etc. 
+   Coordinated program schedule, etc. 
 
-Rachel Johnson 
+b) Rachel Johnson 
 
-Lead coder, developed/created network packets. Oversaw the whole development team, etc. 
+   Lead coder, developed/created network packets. Oversaw the whole development team, etc. 
 
-Create a presentation or video to present to the class. 
+4) Create a presentation or video to present to the class. 
 
-This can be a combination of both 
+ a) This can be a combination of both 
 
-Be a minimum of 10mins, but no longer than 15mins 
+ b) Be a minimum of 10mins, but no longer than 15mins 
 
-Should allow 5mins for questions 
+ c) Should allow 5mins for questions 
 
-Everyone should be involved 
+ d) Everyone should be involved 
 
-Make an appointment for a demo during office hours or any other time, but not during class time. All of your teammates should be present and ready to answer any questions with regards to what they did. 
+5) Make an appointment for a demo during office hours or any other time, but not during class time. All of your teammates should be present and ready to answer any questions with regards to what they did. 
 
  
 
