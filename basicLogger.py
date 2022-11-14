@@ -23,11 +23,11 @@ class MyListener:
 
 test = MyListener(keys_info)
 
-with keyboard.Listener(keyboard.Listener(on_press=test.on_press, on_release=test.on_release) as listener:
-    try:
-        listener.join()
-    except Exception as e:
-        print('{0} exception happened...'.format(e.args[0]))
+#with keyboard.Listener(keyboard.Listener(on_press=test.on_press, on_release=test.on_release) as listener:
+ #   try:
+   #     listener.join()
+  #  except Exception as e:
+    #    print('{0} exception happened...'.format(e.args[0]))
 
 
 inp = input('Please type:\n')
