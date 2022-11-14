@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Close to getting a basic version of client/server udp to work. Just need to debug.">
+    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Finished a very basic UDP echo server with sockets.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/serverTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basicLogger.py" beforeDir="false" afterPath="$PROJECT_DIR$/basicLogger.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +66,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668395802910</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finished a very basic UDP echo server with sockets.">
+      <created>1668396324137</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668396324137</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -86,6 +92,7 @@
     <MESSAGE value="Tried to encapsulate listener into a class but had to go to work before I could get it to play nice with the with... part so I just commented it out." />
     <MESSAGE value="I'm going to work on these two to get the client/server relationship running." />
     <MESSAGE value="Close to getting a basic version of client/server udp to work. Just need to debug." />
-    <option name="LAST_COMMIT_MESSAGE" value="Close to getting a basic version of client/server udp to work. Just need to debug." />
+    <MESSAGE value="Finished a very basic UDP echo server with sockets." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished a very basic UDP echo server with sockets." />
   </component>
 </project>
