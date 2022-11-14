@@ -10,8 +10,8 @@ try:
     buffer = b"test"
 
     print("sending data")
-    s.sendto(buffer, (defaultDestination,defaultDestinationPort))
-    data = s.recv(1000)
+    s.sendto(buffer, (defaultDestination, defaultDestinationPort) )
+    data = s.recv(4096)
     print(str(data))
 finally:
     s.close()

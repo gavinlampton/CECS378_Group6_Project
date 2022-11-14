@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="I'm going to work on these two to get the client/server relationship running.">
+    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Close to getting a basic version of client/server udp to work. Just need to debug.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serverTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/serverTest.py" afterDir="false" />
@@ -60,7 +60,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668394032087</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Close to getting a basic version of client/server udp to work. Just need to debug.">
+      <created>1668395802910</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668395802910</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -78,6 +85,7 @@
     <MESSAGE value="Tried to add basic keylogger but ran out of time and have to go to work." />
     <MESSAGE value="Tried to encapsulate listener into a class but had to go to work before I could get it to play nice with the with... part so I just commented it out." />
     <MESSAGE value="I'm going to work on these two to get the client/server relationship running." />
-    <option name="LAST_COMMIT_MESSAGE" value="I'm going to work on these two to get the client/server relationship running." />
+    <MESSAGE value="Close to getting a basic version of client/server udp to work. Just need to debug." />
+    <option name="LAST_COMMIT_MESSAGE" value="Close to getting a basic version of client/server udp to work. Just need to debug." />
   </component>
 </project>

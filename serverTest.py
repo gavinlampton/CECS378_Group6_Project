@@ -8,10 +8,10 @@ s.bind(("", port))
 print("waiting on port:", port)
 
 try:
-    data, addr = s.recv(1000)
+    data, addr = s.recvfrom(4096)
     print("Received {0}" % data)
     data = str.capitalize(str(data))
-    s.sendto(bytes(data), addr)
+    s.sendto(bytes(data, 'utf-8'), addr)
 
 finally:
     s.close()
