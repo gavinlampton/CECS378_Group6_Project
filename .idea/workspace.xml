@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Wrapped control loop into try/except blocks and made the server connect multiple times. Also made the socket close on exit.">
+    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Debugged the pull list from str function and now it works.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668574797269</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Debugged the pull list from str function and now it works.">
+      <created>1668578573281</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668578573281</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,6 +189,7 @@
     <MESSAGE value="Working towards a keylogger that logs keys into a file. Still not sure why it doesn't write to the file." />
     <MESSAGE value="Added more to the functions for reading and interpretting files." />
     <MESSAGE value="Wrapped control loop into try/except blocks and made the server connect multiple times. Also made the socket close on exit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Wrapped control loop into try/except blocks and made the server connect multiple times. Also made the socket close on exit." />
+    <MESSAGE value="Debugged the pull list from str function and now it works." />
+    <option name="LAST_COMMIT_MESSAGE" value="Debugged the pull list from str function and now it works." />
   </component>
 </project>

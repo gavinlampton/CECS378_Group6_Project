@@ -23,7 +23,6 @@ def pull_list_from_str(input_string):
             location += 1
             return_list.append('')
         else:
-            print(location)
             return_list[location] += c
 
     return return_list
@@ -50,8 +49,9 @@ try:
                 if len(command_list) >= 1:
                     client.send(command_list[0].encode())
 
-                    if command_list[0] == 'file' and len(command_list) > 1:
-                        client.send(read_file(command_list[1]))
+                    if command_list[0] == 'file' and len(command_list) >= 3:
+                        client.send(command_list[2].encode())
+                        client.send(read_file(command_list[1]).encode())
 
                 else:
                     print('Could not interpret command.')
