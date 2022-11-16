@@ -2,7 +2,7 @@ import socket
 import string
 
 
-def read_from_file(file):
+def read_file(file):
     return_value = ''
 
     try:
@@ -16,12 +16,14 @@ def read_from_file(file):
 
 
 def pull_list_from_str(input_string):
-    return_list = []
+    return_list = ['']
     location = 0
     for c in input_string:
-        if(c == string.whitespace):
+        if c in string.whitespace:
             location += 1
+            return_list.append('')
         else:
+            print(location)
             return_list[location] += c
 
     return return_list
@@ -45,11 +47,11 @@ try:
             while True:
                 command_list = pull_list_from_str(input('Enter Command : '))
 
-                if len(command_list) == 1:
-                    client.send(command_list[0])
+                if len(command_list) >= 1:
+                    client.send(command_list[0].encode())
 
-                elif command_list[0] == 'file' and len(command_list) > 1:
-                    client.send(read_from_file(command_list[1]))
+                    if command_list[0] == 'file' and len(command_list) > 1:
+                        client.send(read_file(command_list[1]))
 
                 else:
                     print('Could not interpret command.')
