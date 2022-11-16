@@ -14,17 +14,17 @@ def read_from_file(file):
 
     return return_value
 
-def pull_list_from_str(input):
+
+def pull_list_from_str(input_string):
     return_list = []
     location = 0
-    for c in input:
+    for c in input_string:
         if(c == string.whitespace):
             location += 1
         else:
             return_list[location] += c
 
     return return_list
-
 
 
 HOST = 'localhost'
@@ -34,24 +34,34 @@ server = socket.socket()
 server.bind((HOST, PORT))
 print('[+] Server Started')
 print('[+] Listening For Client Connection ...')
-server.listen(1)
-client, client_addr = server.accept()
-print(f'[+] {client_addr} Client connected to the server')
 
+try:
+    while True:
+        server.listen(1)
+        client, client_addr = server.accept()
+        print(f'[+] {client_addr} Client connected to the server')
 
-while True:
-    command_list = pull_list_from_str(input('Enter Command : '))
-    if len(command_list) == 1:
-        client.send(command_list[0])
-    elif len(command_list) > 1:
-        client.send(read_from_file(command_list[1]))
-    else:
-        print('Could not interpret command.')
+        try:
+            while True:
+                command_list = pull_list_from_str(input('Enter Command : '))
 
-    print('[+] Command sent')
-    output = client.recv(1024)
-    output = output.decode()
-    print(f"Output: {output}")
+                if len(command_list) == 1:
+                    client.send(command_list[0])
 
+                elif command_list[0] == 'file' and len(command_list) > 1:
+                    client.send(read_from_file(command_list[1]))
 
+                else:
+                    print('Could not interpret command.')
+
+                print('[+] Command sent')
+                output = client.recv(1024)
+                output = output.decode()
+                print(f"Output: {output}")
+        except ConnectionAbortedError:
+            print('Client ended connection')
+except KeyboardInterrupt:
+    print('Terminated session.')
+finally:
+    server.close()
 

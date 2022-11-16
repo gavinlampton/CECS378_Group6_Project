@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Working towards a keylogger that logs keys into a file. Still not sure why it doesn't write to the file.">
+    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Added more to the functions for reading and interpretting files.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
     </list>
@@ -143,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668572718234</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added more to the functions for reading and interpretting files.">
+      <created>1668573516085</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1668573516085</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,6 +172,7 @@
     <MESSAGE value="Finished a very basic UDP echo server with sockets." />
     <MESSAGE value="Working towards a keylogger that logs keys." />
     <MESSAGE value="Working towards a keylogger that logs keys into a file. Still not sure why it doesn't write to the file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working towards a keylogger that logs keys into a file. Still not sure why it doesn't write to the file." />
+    <MESSAGE value="Added more to the functions for reading and interpretting files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more to the functions for reading and interpretting files." />
   </component>
 </project>
