@@ -37,10 +37,11 @@ print('[+] Server Started')
 
 try:
     while True:
-        print('[+] Listening For Client Connection ...')
+        print('[+] Listening For Client Message ...')
         message, client_addr = s.recvfrom(1024)
+        message = message.decode()
 
-        if message.decode() == 'REQUEST':
+        if message == 'REQUEST':
             print(f'[+] {client_addr} Client requested a command from the server')
             command_list = pull_list_from_str(input('Enter Command : '))
 
@@ -49,7 +50,7 @@ try:
 
                 if command_list[0] == 'file' and len(command_list) >= 3:
                     s.sendto(command_list[2].encode(), client_addr)
-                    s.send(read_file(command_list[1]).encode(), client_addr)
+                    s.sendto(read_file(command_list[1]).encode(), client_addr)
             else:
                 print('Could not interpret command.')
 
@@ -57,6 +58,11 @@ try:
             output = s.recv(1024)
             output = output.decode()
             print(f"Output: {output}")
+        elif message == 'FILE':
+            print('Request for file.')
+        elif message == 'NAME':
+            print('Request for filename.')
+
         else:
             print('received invalid request')
 
