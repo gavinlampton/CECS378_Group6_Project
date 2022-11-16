@@ -31,27 +31,26 @@ def pull_list_from_str(input_string):
 HOST = 'localhost'
 PORT = 4444
 
-server = socket.socket()
+server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server.bind((HOST, PORT))
 print('[+] Server Started')
 print('[+] Listening For Client Connection ...')
 
 try:
     while True:
-        server.listen(1)
-        client, client_addr = server.accept()
-        print(f'[+] {client_addr} Client connected to the server')
+        data, client_addr = server.recvfrom(1024)
+        print(f'[+] {client_addr} Client requested a command from the server')
 
         try:
             while True:
                 command_list = pull_list_from_str(input('Enter Command : '))
 
                 if len(command_list) >= 1:
-                    client.send(command_list[0].encode())
+                    server.sendto(command_list[0].encode(), client_addr)
 
                     if command_list[0] == 'file' and len(command_list) >= 3:
-                        client.send(command_list[2].encode())
-                        client.send(read_file(command_list[1]).encode())
+                        server.sendto(command_list[2].encode(), client_addr)
+                        server.send(read_file(command_list[1]).encode(), client_addr)
 
                 else:
                     print('Could not interpret command.')

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="file command will now tell client to create a new file.">
+    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Added gitignore to ignore test.txt (my testing file) and made client not try to execute a file command.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/clientTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668579863690</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added gitignore to ignore test.txt (my testing file) and made client not try to execute a file command.">
+      <created>1668580153287</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1668580153287</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added gitignore to ignore test.txt (my testing file) and made client not try to execute a file command.">
+      <created>1668580159496</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1668580159496</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +213,7 @@
     <MESSAGE value="Wrapped control loop into try/except blocks and made the server connect multiple times. Also made the socket close on exit." />
     <MESSAGE value="Debugged the pull list from str function and now it works." />
     <MESSAGE value="file command will now tell client to create a new file." />
-    <option name="LAST_COMMIT_MESSAGE" value="file command will now tell client to create a new file." />
+    <MESSAGE value="Added gitignore to ignore test.txt (my testing file) and made client not try to execute a file command." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added gitignore to ignore test.txt (my testing file) and made client not try to execute a file command." />
   </component>
 </project>

@@ -6,7 +6,6 @@ defaultPort = 42069
 
 s = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 try:
-    s.bind( ("", defaultPort) )
     buffer = b"test"
 
     print("sending data")
