@@ -15,19 +15,21 @@ def read_from_file(file):
     return return_value
 
 def pull_list_from_str(input):
-    returnList = []
+    return_list = []
     location = 0
     for c in input:
         if(c == string.whitespace):
             location += 1
         else:
-            returnList[location] += c
+            return_list[location] += c
+
+    return return_list
 
 
 
-HOST = 'localhost' # '192.168.43.82'
-PORT = 4444 # 2222
-SEND_FILE = ''
+HOST = 'localhost'
+PORT = 4444
+
 server = socket.socket()
 server.bind((HOST, PORT))
 print('[+] Server Started')
@@ -38,12 +40,14 @@ print(f'[+] {client_addr} Client connected to the server')
 
 
 while True:
-    command = input('Enter Command : ')
-    command = command.encode()
-    if command == 'file':
-        client.send(read_from_file(SEND_FILE))
+    command_list = pull_list_from_str(input('Enter Command : '))
+    if len(command_list) == 1:
+        client.send(command_list[0])
+    elif len(command_list) > 1:
+        client.send(read_from_file(command_list[1]))
     else:
-        client.send(command)
+        print('Could not interpret command.')
+
     print('[+] Command sent')
     output = client.recv(1024)
     output = output.decode()
