@@ -1,5 +1,0 @@
-Meterpreter is a malicious trojan-type program that allows cyber criminals to remotely control infected computers. This malware runs in computer memory without writing anything to disk. Therefore, it injects itself into compromised processes and does not create any new processes.
-
-Meterpreter can be used to send and receive files, run executable files, run various commands through command shell, take screenshots and record keystrokes. Like most programs of this type, it is distributed to steal information that could be used to generate revenue and/or infect computers with other malware.
-
-A Trojan, or Trojan horse, is a type of malware that conceals its true content to fool a user into thinking it's a harmless file. Like the wooden horse used to sack Troy, the "payload" carried by a Trojan is unknown to the user, but it can act as a delivery vehicle for a variety of threats.
