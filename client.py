@@ -1,6 +1,6 @@
 # https://docs.python.org/3/library/socket.html#socket.SOCK_DGRAM
 # used this to learn how to initialize socket.
-
+import ipaddress
 # https://www.securecoding.com/blog/how-to-build-a-simple-backdoor-in-python/
 # This file itself is an iteration on the client described here.
 
@@ -53,7 +53,7 @@ def write_list_into_file(name, byte_or_char_type, input_list):
     write_target.close()
 
 
-DEFAULT_HOST = '172.113.155.186'
+DEFAULT_HOST = ipaddress.IPv4Address('172.113.155.186')
 DEFAULT_PORT = 4444
 DEFAULT_TRANSFER_PORT = 4450
 
