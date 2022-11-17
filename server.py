@@ -10,6 +10,11 @@
 
 import socket
 import string
+from sys import getsizeof
+
+import commands
+from commands import Commands
+from commands import str_to_command
 
 buffer_size = 4096
 
@@ -57,6 +62,7 @@ def pull_list_from_str(input_string):
 
     return return_list
 
+
 HOST = 'localhost'
 PORT = 4444
 TCP_PORT = 4445
@@ -68,18 +74,21 @@ print('[+] Server Started')
 try:
     while True:
         print('[+] Listening For Client Message ...')
-        message, client_addr = s.recvfrom(buffer_size)
-        message = message.decode()
+        message_bytes, client_addr = s.recvfrom(buffer_size)
+        # https://theprogrammingexpert.com/python-int-to-bytes/
+        # bytes to int.
+        # https://codeblessu.com/python/size-of-data-types.html
+        # getsizeof
+        message = commands.from_byte(message_bytes)
 
-        if message == 'REQUEST':
+        if message == Commands.REQUEST:
             print(f'[+] {client_addr} Client requested a command from the server')
             command_list = pull_list_from_str(input('Enter Command : '))
 
             if len(command_list) >= 1:
                 s.sendto(command_list[0].encode(), client_addr)
 
-                if command_list[0] == 'FILE' and len(command_list) >= 3:
-                    # TODO: Modify this so it send the entire file in bits.
+                if command_list[0] == Commands.FILE and len(command_list) >= 3:
                     buffer_list = read_file_into_list(command_list[1], client_addr)
                     tcp_socket = socket.socket()
                     s.sendto(command_list[2].encode(), client_addr)
@@ -89,6 +98,8 @@ try:
 
                     for list_item in buffer_list:
                         tcp_client.send(list_item)
+
+                    tcp_client.send(message.to_bytes(Commands.END_TRANSFER))
 
             else:
                 print('Could not interpret command.')

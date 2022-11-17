@@ -8,23 +8,28 @@ import socket
 import subprocess
 import sys
 
+import commands
+from commands import Commands
+
 udp_buffer_size = 4096
 tcp_buffer_size = 4096
 
 
 def get_command(request, sock, host, port):
     print("[-] Requesting command...")
-    sock.sendto(request, (host, port))
+    # https://theprogrammingexpert.com/python-int-to-bytes/
+    # int to byte
+    sock.sendto(commands.to_byte(request), (host, port))
     return sock.recv(udp_buffer_size).decode()
 
 
 # https://contenttool.io/text-difference-checker
 # used this tool to confirm that the read and write functions worked.
-def write_list_into_file(name, type, list):
-    f = open(name, 'w{0}'.format(type))
-    for s in list:
-        f.write(s)
-    f.close()
+def write_list_into_file(name, byte_or_char_type, input_list):
+    write_target = open(name, 'w{0}'.format(byte_or_char_type))
+    for current_string in input_list:
+        write_target.write(current_string)
+    write_target.close()
 
 
 DEFAULT_HOST = 'localhost'
@@ -44,15 +49,12 @@ if len(sys.argv) > 2:
 s = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
 try:
-    MAKE_REQUEST = bytes('REQUEST', 'utf-8')
-    FILENAME_REQUEST = bytes('NAME', 'utf-8')
-    FILE_REQUEST = bytes('FILE', 'utf-8')
 
     while True:
-        command = get_command(MAKE_REQUEST, s, REMOTE_HOST, REMOTE_PORT)
+        command = get_command(Commands.REQUEST, s, REMOTE_HOST, REMOTE_PORT)
 
         if command == 'file':
-            file_name = get_command(FILENAME_REQUEST, s, REMOTE_HOST, REMOTE_PORT)
+            file_name = get_command(Commands.FILENAME, s, REMOTE_HOST, REMOTE_PORT)
             tcp_connection = socket.socket()
             f = None
             try:
