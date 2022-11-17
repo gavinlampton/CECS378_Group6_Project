@@ -83,12 +83,15 @@ try:
                 tcp_connection.connect((REMOTE_HOST, REMOTE_TRANSFER_PORT))
                 f = open(file_name, 'a')
 
-                current_input = tcp_connection.recv(tcp_buffer_size).decode()
+                current_input = tcp_connection.recv(tcp_buffer_size)
+                current_input = current_input.decode() if current_input is str else current_input
+
                 while commands.str_to_command(current_input) != Commands.END_TRANSFER:
                     f.write(current_input)
                     print(current_input)
                     tcp_connection.send(commands.to_byte(Commands.FILE))
-                    current_input = tcp_connection.recv(tcp_buffer_size).decode()
+                    current_input = tcp_connection.recv(tcp_buffer_size)
+                    current_input = current_input.decode() if current_input is str else current_input
 
             finally:
                 tcp_connection.close()

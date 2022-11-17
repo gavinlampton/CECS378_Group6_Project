@@ -93,12 +93,10 @@ try:
                 s.sendto(command_list[0].encode(), client_addr)
 
                 if str_to_command(command_list[0]) == Commands.FILE and len(command_list) >= 3:
-                    print("File command detected")
                     tcp_socket = socket.socket()
                     tcp_socket.bind(('', TCP_PORT))
                     tcp_socket.listen(1)
 
-                    print("Waiting for udp request")
                     s.recv(buffer_size) # blocks until client is ready on udp.
                     s.sendto(command_list[2].encode(), client_addr)
 
@@ -106,15 +104,13 @@ try:
                     tcp_client, tcp_address = tcp_socket.accept() # blocks on tcp until client is ready.
                     print("Connection accepted.")
                     byte_or_char_arg = get_byte_or_char_arg_for(command_list[1])
-                    print("got whether file is byte or char array.")
                     buffer_list = read_file_into_list(command_list[1], 'r{0}'.format(byte_or_char_arg))
 
                     # might need to change response if tcp address is something else.
-                    print("Received buffer list of size %d" % len(buffer_list))
                     for list_item in buffer_list:
                         print("Sending file contents")
-                        tcp_client.send(list_item.encode())
-                        tcp_client.recv(buffer_size) # block until client ready for next input.
+                        tcp_client.send(list_item.encode() if list_item is bytes else list_item)
+                        tcp_client.recv(buffer_size)  # block until client ready for next input.
 
                     tcp_client.send(commands.to_byte(Commands.END_TRANSFER))
                     print("File transfer completed.")
