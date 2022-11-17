@@ -33,7 +33,7 @@ def read_file_into_list(file, read_type):
         current_input = f.read(buffer_size)
         # https://stackoverflow.com/questions/16678363/how-do-i-declare-an-empty-bytes-variable
         # used this to find the convert to byte trick.
-        while current_input != b'':
+        while current_input != '':
             return_list.append('')
             return_list[counter] += current_input
             counter += 1
@@ -67,6 +67,7 @@ def get_byte_or_char_arg_for(filename):
     # https://www.askpython.com/python/string/python-string-contains
     # String contains
     return 'b' if str.__contains__(filename, ".exe") else ''
+
 
 HOST = 'localhost'
 PORT = 4444
@@ -103,6 +104,7 @@ try:
                     tcp_client, tcp_address = tcp_socket.accept() # blocks on tcp until client is ready.
                     print("Connection accepted.")
                     byte_or_char_arg = get_byte_or_char_arg_for(command_list[1])
+                    print("got whether file is byte or char array.")
                     buffer_list = read_file_into_list(command_list[1], 'r{0}'.format(byte_or_char_arg))
 
                     # might need to change response if tcp address is something else.
