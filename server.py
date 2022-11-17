@@ -33,13 +33,23 @@ def read_file_into_list(file, read_type):
         current_input = f.read(buffer_size)
         # https://stackoverflow.com/questions/16678363/how-do-i-declare-an-empty-bytes-variable
         # used this to find the convert to byte trick.
-        initial_value = b'' if read_type == "rb" else ''
+        empty_value = b'' if read_type == "rb" else ''
+        is_final_loop = False;
+        is_looping = True
 
-        while current_input != initial_value:
-            return_list.append(initial_value)
+        while is_looping:
+            return_list.append(empty_value)
             return_list[counter] += current_input
+
+            if is_final_loop:
+                is_looping = False
+            else:
+                is_final_loop = current_input != empty_value
+
             counter += 1
             current_input = f.read(buffer_size)
+
+
 
     except FileNotFoundError as e:
         print(e)
