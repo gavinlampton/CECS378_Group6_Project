@@ -1,6 +1,5 @@
-test.txt
-test.exe
-output.exe
+test.*
+output.*
 compile_test_folder
 function_test.py
 test_files
