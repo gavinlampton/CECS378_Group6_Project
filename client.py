@@ -25,23 +25,6 @@ def get_command(request, sock, host, port):
             print("Timed out, sending new request")
 
 
-def tcp_thread(host, port):
-    f = None
-    tcp_connection = socket.socket()
-    try:
-        tcp_connection.connect((host, port))
-        f = open(file_name, 'a')
-        current_input = tcp_connection.recv(tcp_buffer_size).decode()
-        print(current_input)
-        while commands.str_to_command(current_input) != Commands.END_TRANSFER:
-            print(current_input)
-            f.write(current_input)
-            current_input = tcp_connection.recv(tcp_buffer_size).decode()
-    finally:
-        tcp_connection.close()
-        f.close()
-
-
 
 # https://contenttool.io/text-difference-checker
 # used this tool to confirm that the read and write functions worked.

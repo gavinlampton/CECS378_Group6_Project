@@ -15,12 +15,20 @@ def from_byte(byte_command):
     return_int = 0
     # https://theprogrammingexpert.com/python-int-to-bytes/
     # bytes to int.
-    return Commands(return_int.from_bytes(bytes=byte_command, byteorder="big"))
+    return_int = return_int.from_bytes(bytes=byte_command, byteorder="big")
+    if return_int >= len(Commands):
+        return Commands.INVALID
+    else:
+        return Commands(return_int)
 
 
 def str_to_command(input_str):
+    # https://www.pythonpool.com/check-data-type-python/
+    # Got the isInstance function from here.
+    if isinstance(input_str, bytes):
+        return from_byte(input_str)
     try:
-        input_str = input_str.decode() if input_str is bytes else input_str
+
         for commands in Commands:
             # https://www.geeksforgeeks.org/case-insensitive-string-comparison-in-python/
             # idea for the case-insensitive comparison
