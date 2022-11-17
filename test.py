@@ -5,4 +5,3 @@ from random import randint
 print("Have a random number: ")
 print(randint(0, 10000))
 execv(argv[0], argv)
-

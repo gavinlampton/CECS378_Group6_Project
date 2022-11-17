@@ -13,7 +13,9 @@ def from_byte(byte_command):
 
 def str_to_command(input_str):
     for commands in Commands:
-        if input_str == commands.name:
+        # https://www.geeksforgeeks.org/case-insensitive-string-comparison-in-python/
+        # idea for the case-insensitive comparison
+        if input_str.lower() == commands.name.lower():
             return Commands(commands.value)
 
 
