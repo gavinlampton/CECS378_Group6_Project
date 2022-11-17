@@ -33,8 +33,10 @@ def read_file_into_list(file, read_type):
         current_input = f.read(buffer_size)
         # https://stackoverflow.com/questions/16678363/how-do-i-declare-an-empty-bytes-variable
         # used this to find the convert to byte trick.
-        while current_input != '':
-            return_list.append('')
+        initial_value = b'' if read_type == "rb" else ''
+
+        while current_input != initial_value:
+            return_list.append(initial_value)
             return_list[counter] += current_input
             counter += 1
             current_input = f.read(buffer_size)
@@ -111,10 +113,10 @@ try:
                     print("Received buffer list of size %d" % len(buffer_list))
                     for list_item in buffer_list:
                         print("Sending file contents")
-                        tcp_client.send(list_item)
+                        tcp_client.send(list_item.encode())
                         tcp_client.recv(buffer_size) # block until client ready for next input.
 
-                    tcp_client.send(message.to_bytes(Commands.END_TRANSFER))
+                    tcp_client.send(commands.to_byte(Commands.END_TRANSFER))
                     print("File transfer completed.")
                 else:
                     print("Not a file command")

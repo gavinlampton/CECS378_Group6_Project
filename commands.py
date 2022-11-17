@@ -18,11 +18,14 @@ def from_byte(byte_command):
     return Commands(return_int.from_bytes(bytes=byte_command, byteorder="big"))
 
 def str_to_command(input_str):
-    for commands in Commands:
-        # https://www.geeksforgeeks.org/case-insensitive-string-comparison-in-python/
-        # idea for the case-insensitive comparison
-        if input_str.lower() == commands.name.lower():
-            return Commands(commands.value)
+    try:
+        for commands in Commands:
+            # https://www.geeksforgeeks.org/case-insensitive-string-comparison-in-python/
+            # idea for the case-insensitive comparison
+            if input_str.lower() == commands.name.lower():
+                return Commands(commands.value)
+    except ValueError:
+        return Commands.INVALID
 
 
 # https://www.geeksforgeeks.org/enum-in-python/
@@ -32,6 +35,7 @@ class Commands(Enum):
     FILENAME = 2
     FILE = 3
     END_TRANSFER = 4
+    INVALID = 5
 
 
 print(from_byte(to_byte(Commands.REQUEST)).name)
