@@ -29,33 +29,26 @@ def read_file_into_list(file, read_type):
 
     try:
         f = open(file, read_type)
+        end_of_file = f.seek(0, 2)
+        f.seek(0, 0)
 
-        current_input = f.read(buffer_size)
         # https://stackoverflow.com/questions/16678363/how-do-i-declare-an-empty-bytes-variable
         # used this to find the convert to byte trick.
         empty_value = b'' if read_type == "rb" else ''
-        is_final_loop = False;
-        is_looping = True
 
-        while is_looping:
+        while f.tell() != end_of_file:
+            current_input = f.read(buffer_size)
+
             return_list.append(empty_value)
             return_list[counter] += current_input
 
-            if is_final_loop:
-                is_looping = False
-            else:
-                is_final_loop = current_input != empty_value
-
             counter += 1
-            current_input = f.read(buffer_size)
 
-
-
+        print(counter)
     except FileNotFoundError as e:
         print(e)
     finally:
         f.close()
-
     return return_list
 
 
@@ -81,12 +74,11 @@ def get_byte_or_char_arg_for(filename):
     return 'b' if str.__contains__(filename, ".exe") else ''
 
 
-HOST = 'localhost'
 PORT = 4444
 TCP_PORT = 4450
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.bind((HOST, PORT))
+s.bind(('', PORT))
 print('[+] Server Started')
 
 try:
@@ -117,8 +109,8 @@ try:
                     buffer_list = read_file_into_list(command_list[1], 'r{0}'.format(byte_or_char_arg))
 
                     # might need to change response if tcp address is something else.
+                    print(len(buffer_list))
                     for list_item in buffer_list:
-                        print("Sending file contents")
                         tcp_client.send(list_item.encode() if list_item is bytes else list_item)
                         tcp_client.recv(buffer_size)  # block until client ready for next input.
 

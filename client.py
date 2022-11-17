@@ -53,7 +53,7 @@ def write_list_into_file(name, byte_or_char_type, input_list):
     write_target.close()
 
 
-DEFAULT_HOST = ipaddress.IPv4Address('172.113.155.186')
+DEFAULT_HOST = 'localhost'
 DEFAULT_PORT = 4444
 DEFAULT_TRANSFER_PORT = 4450
 
@@ -89,7 +89,6 @@ try:
 
                 while commands.str_to_command(current_input) != Commands.END_TRANSFER:
                     f.write(current_input)
-                    print(current_input)
                     tcp_connection.send(commands.to_byte(Commands.FILE))
                     current_input = tcp_connection.recv(tcp_buffer_size)
                     current_input = current_input.decode() if not is_exe else current_input
