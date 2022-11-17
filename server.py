@@ -10,7 +10,6 @@
 
 import socket
 import string
-from sys import getsizeof
 
 import commands
 from commands import Commands

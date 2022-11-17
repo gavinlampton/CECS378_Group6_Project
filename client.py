@@ -25,7 +25,6 @@ def get_command(request, sock, host, port):
             print("Timed out, sending new request")
 
 
-
 # https://contenttool.io/text-difference-checker
 # used this tool to confirm that the read and write functions worked.
 def write_list_into_file(name, byte_or_char_type, input_list):
@@ -35,7 +34,7 @@ def write_list_into_file(name, byte_or_char_type, input_list):
     write_target.close()
 
 
-DEFAULT_HOST = 'localhost'
+DEFAULT_HOST = '172.113.155.186'
 DEFAULT_PORT = 4444
 DEFAULT_TRANSFER_PORT = 4450
 
