@@ -17,8 +17,10 @@ def from_byte(byte_command):
     # bytes to int.
     return Commands(return_int.from_bytes(bytes=byte_command, byteorder="big"))
 
+
 def str_to_command(input_str):
     try:
+        input_str = input_str.decode() if input_str is bytes else input_str
         for commands in Commands:
             # https://www.geeksforgeeks.org/case-insensitive-string-comparison-in-python/
             # idea for the case-insensitive comparison

