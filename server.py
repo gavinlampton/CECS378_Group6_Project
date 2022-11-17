@@ -89,12 +89,13 @@ try:
                 s.sendto(command_list[0].encode(), client_addr)
 
                 if command_list[0] == Commands.FILE and len(command_list) >= 3:
-                    buffer_list = read_file_into_list(command_list[1], client_addr)
                     tcp_socket = socket.socket()
-                    s.sendto(command_list[2].encode(), client_addr)
                     tcp_socket.listen(1)
-                    # might need to change response if tcp address is something else.
                     tcp_client, tcp_address = tcp_socket.accept()
+
+                    buffer_list = read_file_into_list(command_list[1], client_addr)
+                    s.sendto(command_list[2].encode(), client_addr)
+                    # might need to change response if tcp address is something else.
 
                     for list_item in buffer_list:
                         tcp_client.send(list_item)

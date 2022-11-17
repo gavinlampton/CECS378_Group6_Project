@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Tried to make the test.py compile into a smaller file but it didn't work.&#10;added the new test folder to gitignore.">
+    <list default="true" id="c045f297-fdfe-4162-9e11-a69749b74baf" name="Changes" comment="Still reworking the system to send larger files.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/commands.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +31,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.client">
+  <component name="RunManager" selected="Python.server">
     <configuration name="client" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="CECS378_Group6_Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -215,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668591573873</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Still reworking the system to send larger files.">
+      <created>1668659059252</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1668659059252</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -245,6 +251,7 @@
     <MESSAGE value="Started moving project over to UDP." />
     <MESSAGE value="Server/Client can now work on UDP." />
     <MESSAGE value="Tried to make the test.py compile into a smaller file but it didn't work.&#10;added the new test folder to gitignore." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tried to make the test.py compile into a smaller file but it didn't work.&#10;added the new test folder to gitignore." />
+    <MESSAGE value="Still reworking the system to send larger files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Still reworking the system to send larger files." />
   </component>
 </project>

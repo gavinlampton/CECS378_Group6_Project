@@ -54,14 +54,19 @@ try:
         command = get_command(Commands.REQUEST, s, REMOTE_HOST, REMOTE_PORT)
 
         if command == 'file':
-            file_name = get_command(Commands.FILENAME, s, REMOTE_HOST, REMOTE_PORT)
-            tcp_connection = socket.socket()
             f = None
+            tcp_connection = socket.socket()
             try:
                 tcp_connection.connect((REMOTE_HOST, REMOTE_TRANSFER_PORT))
-                f = open(file_name, 'w')
+                file_name = get_command(Commands.FILENAME, s, REMOTE_HOST, REMOTE_PORT)
+                f = open(file_name, 'a')
                 # TODO: loop tcp receive until done.
-                f.write(tcp_connection.recv(tcp_buffer_size).decode())
+                current_input = tcp_connection.recv(tcp_buffer_size).decode()
+                print(current_input)
+                while commands.str_to_command(current_input) != Commands.END_TRANSFER:
+                    print(current_input)
+                    f.write(current_input)
+                    current_input = tcp_connection.recv(tcp_buffer_size).decode()
             finally:
                 f.close()
                 tcp_connection.close()
