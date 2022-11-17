@@ -4,11 +4,17 @@ from sys import getsizeof
 
 def to_byte(command):
     command_int = command.value
+    # https://theprogrammingexpert.com/python-int-to-bytes/
+    # int to byte
+    # https://codeblessu.com/python/size-of-data-types.html
+    # getsizeof
     return command_int.to_bytes(getsizeof(command_int), byteorder="big")
 
 
 def from_byte(byte_command):
     return_int = 0
+    # https://theprogrammingexpert.com/python-int-to-bytes/
+    # bytes to int.
     return Commands(return_int.from_bytes(bytes=byte_command, byteorder="big"))
 
 def str_to_command(input_str):
